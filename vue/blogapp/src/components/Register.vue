@@ -91,7 +91,7 @@ const REGISTER_USER = gql`
                {variables: this.fields});
 
                register().then(data => {
-                console.log(data);
+                this.$store.dispatch('loginUser', data)
                 this.$router.push({ path: '/' });
                })
                .catch(err => {
