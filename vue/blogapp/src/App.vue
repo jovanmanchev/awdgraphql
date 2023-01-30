@@ -7,7 +7,18 @@ export default {
 name: 'App',
 components: {
   
-}
+},
+computed: {
+            getUser(){
+                return this.$store.getters.getUser
+            }
+        },
+
+        methods: {
+          logout(){
+            this.$store.dispatch('logoutUser');
+          }
+        }
 
 }
 
@@ -22,11 +33,14 @@ components: {
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
     
-      <li class="nav-item">
+      <li class="nav-item" v-if="!getUser">
         <router-link class="nav-link" to="/Login">Login</router-link>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" v-if="!getUser">
         <router-link class="nav-link" to="/register">Register</router-link>
+      </li>
+      <li class="nav-item" v-if="getUser">
+        <button class="nav-link" @click="logout">Logout</button>
       </li>
 
     </ul>

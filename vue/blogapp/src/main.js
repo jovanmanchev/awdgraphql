@@ -2,6 +2,7 @@ import { createApp, provide, h } from 'vue'
 import { DefaultApolloClient } from '@vue/apollo-composable'
 import { ApolloClient, InMemoryCache } from '@apollo/client/core'
 import { createHttpLink} from 'apollo-link-http'
+import store from './store';
 import router from './router'
 
 
@@ -24,5 +25,5 @@ const app = createApp({
   
     render: () => h(App),
   })
-app.use(router).mount('#app');
+app.use(router).use(store).mount('#app');
 ﻿

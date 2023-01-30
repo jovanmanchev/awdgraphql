@@ -3,6 +3,7 @@
     <h1>Register Page</h1>
     <div class ='container'>
     <form @submit="register">
+        {{ getUser }}
         <div class="form-group">
             <label for="username" >Username</label>
         <input type="text" v-model="fields.username" class="form-control input-sm" id ='username'>
@@ -12,7 +13,7 @@
         <input type="password" v-model="fields.password" class="form-control input-sm" id ='password'>
         </div>
       
-        <input type="submit" class = 'btn btn-primary' value = "Register">
+        <input type="submit" class = 'btn btn-primary' value = "Login">
     </form>
     <div v:if = "errors">
         <p v-for="(key,value) in errors">
@@ -27,6 +28,7 @@ import gql from 'graphql-tag';
 import { provideApolloClient, useMutation } from '@vue/apollo-composable';
 import { createHttpLink} from 'apollo-link-http'
 import { ApolloClient, InMemoryCache } from '@apollo/client/core'
+import { mapGetters } from 'vuex';
 
 const httpLink = createHttpLink({
     uri: 'http://localhost:5000'
@@ -78,13 +80,19 @@ const LOGIN_USER = gql`
                {variables: this.fields});
 
                register().then(data => {
-                console.log(data);
+                this.$store.dispatch('loginUser', data)
+             
                 this.$router.push({ path: '/' });
                })
                .catch(err => {
-            
+                console.log(err)
                 this.errors = err.graphQLErrors[0].extensions.errors
             });
+            }
+        },
+        computed: {
+            getUser(){
+                return this.$store.getters.getUser
             }
         }
          
