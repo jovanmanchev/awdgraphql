@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Login from './components/Login.vue';
 import Regster from './components/Register.vue';
 import Home from './components/Home.vue';
-
+import PostCardComments from './components/PostCardComments.vue'
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -17,6 +17,11 @@ const router = createRouter({
         {
             path: '/register',
             component: Regster
+        },
+        {
+            path: '/posts/:id',
+            name: 'PostDetail',
+            component: PostCardComments
         }
     ]
 });
