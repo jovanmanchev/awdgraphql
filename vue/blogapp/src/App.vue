@@ -2,47 +2,41 @@
 
 <script >
 
-import Post from './components/Post.vue';
+
 export default {
 name: 'App',
 components: {
-Post
+  
 }
+
 }
 
 </script>
 
 <template>
-  
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <router-link class="navbar-brand" to="/">Blog App</router-link>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+    
+      <li class="nav-item">
+        <router-link class="nav-link" to="/Login">Login</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/register">Register</router-link>
+      </li>
 
-  <Post />
+    </ul>
+  </div>
+</nav>
+  <router-view></router-view>
+
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
