@@ -21,6 +21,11 @@
         </div>
         <input type="submit" class = 'btn btn-primary' value = "Register">
     </form>
+    <div v:if = "errors">
+        <p v-for="(key,value) in errors">
+            {{ key }}
+        </p>
+    </div>
 </div>
 </template>
 
@@ -75,7 +80,8 @@ const REGISTER_USER = gql`
                     email: '',
                     password: '',
                     confirmPassword: ''
-                }
+                },
+                errors: null
             }
         },
         methods:{
@@ -84,7 +90,14 @@ const REGISTER_USER = gql`
                const {mutate: register} = useMutation(REGISTER_USER,
                {variables: this.fields});
 
-               register().then(data => console.log(data));
+               register().then(data => {
+                console.log(data);
+                this.$router.push({ path: '/' });
+               })
+               .catch(err => {
+            
+                this.errors = err.graphQLErrors[0].extensions.errors
+            });
             }
         }
          
