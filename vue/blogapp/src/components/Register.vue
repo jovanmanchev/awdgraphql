@@ -99,6 +99,13 @@ const REGISTER_USER = gql`
                 this.errors = err.graphQLErrors[0].extensions.errors
             });
             }
+        },
+        beforeMount(){
+            const token = localStorage.getItem('jwtToken');
+            console.log(token);
+            if(token){
+                this.$router.push("/")
+            }
         }
          
     }

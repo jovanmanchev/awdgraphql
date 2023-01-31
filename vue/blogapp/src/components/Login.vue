@@ -3,7 +3,7 @@
     <h1>Register Page</h1>
     <div class ='container'>
     <form @submit="register">
-        {{ getUser }}
+        
         <div class="form-group">
             <label for="username" >Username</label>
         <input type="text" v-model="fields.username" class="form-control input-sm" id ='username'>
@@ -93,6 +93,13 @@ const LOGIN_USER = gql`
         computed: {
             getUser(){
                 return this.$store.getters.getUser
+            }
+        },
+        beforeMount(){
+            const token = localStorage.getItem('jwtToken');
+            console.log(token)
+            if(token){
+                this.$router.push("/")
             }
         }
          

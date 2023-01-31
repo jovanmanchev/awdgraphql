@@ -1,8 +1,10 @@
 <template>
 
     <h1>Home Page</h1>
+    
     <div class = 'container'>
        <div v-if="loading">Loading...</div> 
+       <PostForm />
        <div class = 'row'>
       <div class = 'col-md-6 col-lg-4 mb-3' v-for="post in result.getPosts" :key = "post.id" v-if="!loading">
         <PostCard :body="post.body" :username="post.username" :createdAt="post.createdAt" :comments="post.comments" :likes="post.likes" :id="post.id" />
@@ -16,7 +18,7 @@ import gql from 'graphql-tag';
 import { useQuery } from '@vue/apollo-composable';
 
 import PostCard from './PostCard.vue';
-
+import PostForm from './PostForm.vue'
 const FETCH_POST_QUERY = gql`query getPosts{
     getPosts{
         id
@@ -33,7 +35,8 @@ const FETCH_POST_QUERY = gql`query getPosts{
 
     export default{
       components: {
-        PostCard
+        PostCard,
+        PostForm
       },
       setup(){
         const {result, loading, error} = useQuery(FETCH_POST_QUERY);

@@ -10,6 +10,7 @@ components: {
 },
 computed: {
             getUser(){
+                console.log(this.$store.getters.getUser)
                 return this.$store.getters.getUser
             }
         },
