@@ -1,7 +1,8 @@
 import { createStore } from 'vuex'
 import jwtDecode from 'jwt-decode'
 const state = {
-    user: null 
+    user: null,
+    posts: [] 
 };
 
 const mutations = {
@@ -10,6 +11,9 @@ const mutations = {
     },
     LOGOUT_VUEX_MUTATION(state){
         state.user = null;
+    },
+    UPDATE_POSTS_VUES_MUTATION(state, payload){
+        state.posts = payload
     }
 };
 
@@ -23,6 +27,9 @@ const actions = {
         localStorage.removeItem('jwtToken');
         localStorage.removeItem('username');
         commit('LOGOUT_VUEX_MUTATION');
+    },
+    updatePosts({commit}, payload){
+        commit('UPDATE_POSTS_VUES_MUTATION', payload);
     }
 };
 
@@ -37,7 +44,8 @@ const getters = {
             state.user = null;
         }
         return state.user;
-    }
+    },
+    getPosts : state => state.posts
 };
 
 export default createStore({

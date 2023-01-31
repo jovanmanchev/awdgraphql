@@ -5,7 +5,7 @@
 <span>{{ likesCount}}</span>
     </a>
 
-</template>>
+</template>
 
 <script>
 import gql from 'graphql-tag';

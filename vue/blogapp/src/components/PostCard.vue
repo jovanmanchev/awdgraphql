@@ -1,9 +1,11 @@
 <script>
     import moment from 'moment'
     import LikeButton from './LikeButton.vue'
+    import DeleteButton from './DeleteButton.vue'
     export default{
         components:{
-            LikeButton
+            LikeButton,
+            DeleteButton
         },
         name: 'PostCard',
         props: ['username', 'likes', 'comments', 'body', 'createdAt', 'id'],
@@ -35,6 +37,15 @@
                         return false 
                 }
                 return true
+            },
+            canDelete(){
+                if(!localStorage.getItem('jwtToken'))
+                    return
+
+                const usernameUser = localStorage.getItem('username')    
+                if(usernameUser === this.username)
+                    return true;
+                return false
             }
         }
        
@@ -48,7 +59,7 @@
     <router-link :to="{name: 'PostDetail', params: {id}}" class="card-subtitle mb-2 text-muted">{{ moment(createdAt).fromNow() }}</router-link>
     <p class="card-text">{{ body }}.</p>
     
-    <LikeButton :likes = "likes" :postId = "id" @liked = "handleLike" />
+    <LikeButton :likes = "likes" :postId = "id"  />
   
 
 
@@ -58,6 +69,8 @@
 </span>
 <span>{{ comments.length }}</span>
     </a>
+
+    <DeleteButton :postId = "id" v-if="canDelete" />
   </div>
 </div>
 </template>
