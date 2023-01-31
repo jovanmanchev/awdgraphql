@@ -16,10 +16,12 @@ const mutations = {
 const actions = {
     loginUser({commit}, payload){
         localStorage.setItem('jwtToken',payload.data.login.token);
+        localStorage.setItem('username', payload.data.login.username)
         commit('LOGIN_VUEX_MUTATION',payload);
     },
     logoutUser({commit}){
         localStorage.removeItem('jwtToken');
+        localStorage.removeItem('username');
         commit('LOGOUT_VUEX_MUTATION');
     }
 };
@@ -31,6 +33,7 @@ const getters = {
 
         if(decodedToken.exp * 1000 < Date.now()){
             localStorage.removeItem('jwtToken');
+            localStorage.removeItem('username')
             state.user = null;
         }
         return state.user;
