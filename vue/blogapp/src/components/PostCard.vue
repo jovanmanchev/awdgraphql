@@ -53,7 +53,7 @@
 </script>
 
 <template>
-  <div class="card" style="width: 18rem;">
+  <div class="card mb-2" >
   <div class="card-body">
     <h5 class="card-title">{{ username }}</h5>
     <router-link :to="{name: 'PostDetail', params: {id}}" class="card-subtitle mb-2 text-muted">{{ moment(createdAt).fromNow() }}</router-link>

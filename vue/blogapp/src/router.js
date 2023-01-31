@@ -21,6 +21,7 @@ const router = createRouter({
         {
             path: '/posts/:id',
             name: 'PostDetail',
+            props: true,
             component: PostCardComments
         }
     ]

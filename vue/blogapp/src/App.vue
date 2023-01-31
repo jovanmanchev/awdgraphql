@@ -17,6 +17,7 @@ computed: {
 
         methods: {
           logout(){
+            this.$router.push('/')
             this.$store.dispatch('logoutUser');
           }
         }
