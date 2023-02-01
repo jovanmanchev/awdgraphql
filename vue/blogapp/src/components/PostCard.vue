@@ -16,19 +16,15 @@ export default {
     data() {
         return {
             moment,
-            showComments: false
+            showComments: false,
+            commentsCount: this.comments.length
         }
     },
     methods: {
 
-        commentOnPost() {
-            console.log('comment')
-        },
-        handleLike(event) {
-
-        },
         changeShowComments() {
-            this.showComments = true;
+            
+            this.showComments = !this.showComments;
         }
 
     },
@@ -69,8 +65,8 @@ export default {
             <button @click="changeShowComments">Show comments</button>
             <PostCardComments :id="id" :body="body" :username="username" :comments="comments" v-if="showComments" />
             <LikeButton :likes="likes" :postId="id" />
-
-
+            <PostComment :postId = "id"/>
+            <span>{{ commentsCount }}</span>
             <DeleteButton :postId="id" v-if="canDelete" />
         </div>
     </div>

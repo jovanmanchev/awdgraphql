@@ -31,7 +31,7 @@ const FETCH_POST_QUERY = gql`query getPosts{
         username
         likes{ username }
         comments{
-            id username createdAt
+            id body username createdAt
         }
     }
 }`
