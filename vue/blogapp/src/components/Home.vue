@@ -7,10 +7,13 @@
        <PostForm />
        <div class = 'row'>
       <div class = 'col-md-12 col-lg-12' v-for="post in result.getPosts" :key = "post.id" v-if="!loading">
-        <PostCard :body="post.body" :username="post.username" :createdAt="post.createdAt" :comments="post.comments" :likes="post.likes" :id="post.id" />
+        {{ post.id }}
+        <PostCard @showComments = "showComments" :body="post.body" :username="post.username" :createdAt="post.createdAt" :comments="post.comments" :likes="post.likes" :id="post.id" />
     </div>  
 </div>   
     </div>
+
+   
 </template>
 
 <script>
@@ -19,6 +22,7 @@ import { useQuery } from '@vue/apollo-composable';
 
 import PostCard from './PostCard.vue';
 import PostForm from './PostForm.vue'
+
 const FETCH_POST_QUERY = gql`query getPosts{
     getPosts{
         id
@@ -37,6 +41,17 @@ const FETCH_POST_QUERY = gql`query getPosts{
       components: {
         PostCard,
         PostForm
+      },
+      data(){
+        return{
+            
+        }
+      },
+      methods: {
+
+        showComments(){
+            this.showComments = true
+        }
       },
       setup(){
         const {result, loading, error} = useQuery(FETCH_POST_QUERY);
