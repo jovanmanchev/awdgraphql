@@ -60,9 +60,9 @@ export default {
     <div class="card mb-2">
         <div class="card-body">
             <h5 class="card-title">{{ username }}</h5>
-
+            <p class="card-text">{{ moment(createdAt).fromNow() }}.</p>
             <p class="card-text">{{ body }}.</p>
-            <button @click="changeShowComments">Show comments</button>
+            <button @click="changeShowComments" class = 'btn btn-dark'>Show comments</button>
             <PostCardComments :id="id" :body="body" :username="username" :comments="comments" v-if="showComments" />
             <LikeButton :likes="likes" :postId="id" />
             <PostComment :postId = "id"/>

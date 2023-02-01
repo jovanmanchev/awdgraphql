@@ -1,13 +1,12 @@
 <template>
 
-    <h1>Home Page</h1>
+    
     
     <div class = 'container'>
        <div v-if="loading">Loading...</div> 
        <PostForm />
        <div class = 'row'>
       <div class = 'col-md-12 col-lg-12' v-for="post in result.getPosts" :key = "post.id" v-if="!loading">
-        {{ post.id }}
         <PostCard @showComments = "showComments" :body="post.body" :username="post.username" :createdAt="post.createdAt" :comments="post.comments" :likes="post.likes" :id="post.id" />
     </div>  
 </div>   

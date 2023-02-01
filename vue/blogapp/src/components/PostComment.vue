@@ -1,7 +1,7 @@
 <template>
 
 
-<img src="../assets/comment.png"  data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">
+<img src="../assets/comment.png"  data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" @click ="checkAuth">
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -86,10 +86,11 @@ const SUBMIT_COMMENT_MUTATION = gql`
         },
         methods: {
             postComment(){
+                console.log(localStorage.getItem('username'))
                 if(!localStorage.getItem('username')){
                     this.$router.push('/login');
                 }
-                console.log(this.comment)
+                
                 const {mutate: comment} = useMutation(SUBMIT_COMMENT_MUTATION,
                 {variables: {postId: this.postId, body: this.comment}});
                 
@@ -101,6 +102,11 @@ const SUBMIT_COMMENT_MUTATION = gql`
                     console.log(err)
                 })
               
+            },
+            checkAuth(){
+                if(!localStorage.getItem('username')){
+                    this.$router.push('/login');
+                }
             }
         }
 
