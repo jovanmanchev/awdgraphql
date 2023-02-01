@@ -1,6 +1,6 @@
 <template>
 
-    <h1>Register Page</h1>
+
     <div class ='container'>
     <form @submit="register">
         

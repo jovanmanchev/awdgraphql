@@ -1,6 +1,6 @@
 <template>
 
-    <h1>Register Page</h1>
+  
     <div class ='container'>
     <form @submit="register">
         <div class="form-group">
@@ -91,12 +91,16 @@ const REGISTER_USER = gql`
                {variables: this.fields});
 
                register().then(data => {
-                this.$store.dispatch('loginUser', data)
+              
+                localStorage.setItem('jwtToken',data.data.register.token);
+                localStorage.setItem('username', data.data.register.username)
+                
+                
                 this.$router.push({ path: '/' });
                })
                .catch(err => {
             
-                this.errors = err.graphQLErrors[0].extensions.errors
+                this.errors = err;
             });
             }
         },

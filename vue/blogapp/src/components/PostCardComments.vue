@@ -3,10 +3,12 @@
   <div>
     <div v-for="comment in comments">
       <div class = "card">
-        <div class = "card-title">{{ comment.username }}</div>
-        <div class = "card-body">{{ comment.body }}</div>
+        <div class = "card-title ml-3 mt-3">{{ comment.username }}</div>
+        <div class = "card-body">{{ comment.body }}
+          <DeleteCommentButton v-if="comment.username == currentUser" :postId = "id" :commentId = "comment.id"/>
+        </div>
       </div>
-      <DeleteCommentButton v-if="comment.username == currentUser" :postId = "id" :commentId = "comment.id"/>
+      
     </div>
   </div>
 

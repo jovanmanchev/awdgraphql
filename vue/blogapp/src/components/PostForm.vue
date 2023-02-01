@@ -1,6 +1,6 @@
 <template>
     <form @submit = "postBlog">
-  <div class="form-row align-items-center">
+  <div class="form-row align-items-center mt-3">
 
     <div class="col-8">
       <label class="sr-only" for="inlineFormInputGroup">Say someting</label>
@@ -11,7 +11,7 @@
     </div>
 
     <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-2">Post</button>
+      <button type="submit" class="btn btn-dark mb-2">Post</button>
     </div>
   </div>
 
