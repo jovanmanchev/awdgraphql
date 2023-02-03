@@ -7,6 +7,10 @@
       <div class="form-group mb-5">
      
         <textarea v-model="post" type="text" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Say something..."></textarea>
+        <select v-model="category" name="category" id="category">
+          <option value="technology">Technology</option>
+          <option value="politics">Politics</option>
+        </select>
       </div>
     </div>
 
@@ -52,12 +56,13 @@ const apolloClient = new ApolloClient({
 provideApolloClient(apolloClient);
 
 const CREATE_POST_MUTATION = gql`
-mutation createPost($body: String!){
-  createPost(body: $body){
+mutation createPost($body: String!, $category: String!){
+  createPost(body: $body, category: $category){
     id
     body
     createdAt
     username
+    category
   }
 }
 `;
@@ -69,7 +74,8 @@ mutation createPost($body: String!){
         data(){
             return {
                 post: '',
-                error: null
+                error: null,
+                category: ''
             }
         },
         methods: {
@@ -79,8 +85,9 @@ mutation createPost($body: String!){
                     this.error = "enter a post"
                     return
                 }
+                
                 const {mutate: postBlog} = useMutation(CREATE_POST_MUTATION,
-                {variables: {body: this.post}});
+                {variables: {body: this.post, category: this.category}});
                
                 postBlog().then(data => {
                    console.log(data);

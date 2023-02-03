@@ -12,7 +12,7 @@ export default {
         PostComment
     },
     name: 'PostCard',
-    props: ['username', 'likes', 'comments', 'body', 'createdAt', 'id'],
+    props: ['username', 'likes', 'comments', 'body', 'createdAt', 'id', 'category'],
     data() {
         return {
             moment,
@@ -61,6 +61,7 @@ export default {
         <div class="card-body">
             <h5 class="card-title">{{ username }}</h5>
             <p class="card-text">{{ moment(createdAt).fromNow() }}.</p>
+            <p class="card-text">{{ category }}.</p>
             <p class="card-text">{{ body }}.</p>
             <button @click="changeShowComments" class = 'btn btn-dark'>Show comments</button>
             <PostCardComments :id="id" :body="body" :username="username" :comments="comments" v-if="showComments" />
