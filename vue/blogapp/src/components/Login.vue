@@ -81,7 +81,7 @@ const LOGIN_USER = gql`
 
                register().then(data => {
                 this.$store.dispatch('loginUser', data)
-             
+                location.reload()
                 this.$router.push({ path: '/' });
                })
                .catch(err => {

@@ -1,21 +1,25 @@
 <template>
     <form @submit = "postBlog">
-  <div class="form-row align-items-center mt-3">
+  <div class="">
 
     <div class="col-8">
       <label class="sr-only" for="inlineFormInputGroup">Say someting</label>
-      <div class="form-group mb-5">
+      <div class="form-group">
      
         <textarea v-model="post" type="text" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Say something..."></textarea>
-        <select v-model="category" name="category" id="category">
+      
+        <select v-model="category" name="category" id="category" class = 'form-control col-lg-3'>
+          <option value="" disabled>Choose topic</option>
           <option value="technology">Technology</option>
           <option value="politics">Politics</option>
+          <option value="sport">Sport</option>  
+          <option value="other">Other</option>  
         </select>
       </div>
     </div>
 
     <div class="col-auto">
-      <button type="submit" class="btn btn-dark mb-2">Post</button>
+      <button type="submit" class="btn btn-dark mb-5 col-lg-2">Post</button>
     </div>
   </div>
 

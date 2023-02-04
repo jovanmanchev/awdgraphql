@@ -13,6 +13,14 @@ module.exports = {
                 throw new Error(err);
             }
         },
+        async getPostsByCategory(_, {category}){
+            try{
+                const posts = Post.find({category}).sort( { createdAt: -1 });
+                return posts;
+            }catch(err){
+                throw new Error(err);
+            }
+        },
         async getPost(_, {postId}){
             try{
                 const post = await Post.findById(postId)

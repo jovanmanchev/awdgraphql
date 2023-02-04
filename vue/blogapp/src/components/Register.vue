@@ -95,7 +95,7 @@ const REGISTER_USER = gql`
                 localStorage.setItem('jwtToken',data.data.register.token);
                 localStorage.setItem('username', data.data.register.username)
                 
-                
+                location.reload();
                 this.$router.push({ path: '/' });
                })
                .catch(err => {
